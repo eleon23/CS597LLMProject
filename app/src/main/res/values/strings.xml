@@ -46,4 +46,5 @@
     <string name="text_input">Text Input</string>
     <string name="please_select_one_of_the_following_buttons_below">Please select one of the following buttons below to input your question</string>
     <string name="troubleshooting_app">Troubleshooting App</string>
+    <string name="press_here_to_record_your_question">Press here to record your question!</string>
 </resources>

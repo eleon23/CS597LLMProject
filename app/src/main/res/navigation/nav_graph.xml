@@ -12,17 +12,14 @@
         tools:layout="@layout/fragment_user_selection">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_homeFragment_to_voice_input_fragment"
+            app:destination="@id/voiceInputFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.cs597llmproject.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/voiceInputFragment"
+        android:name="com.example.cs597llmproject.VoiceInputFragment"
+        android:label="Voice Input Fragment"
+        tools:layout="@layout/fragment_voice_input_fragment">
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/UserSelectionFragment" />
     </fragment>
 </navigation>
