@@ -11,10 +11,10 @@
 
     <TextView
         android:id="@+id/description"
-        style="@style/MaterialAlertDialog.Material3.Title.Text"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/please_select_one_of_the_following_buttons_below"
+        android:text="@string/please_select_one_of_the_following_inputs_to_record_your_question"
         android:textAlignment="center" />
 
     <LinearLayout

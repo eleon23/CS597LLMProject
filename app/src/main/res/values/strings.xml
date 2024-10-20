@@ -47,4 +47,5 @@
     <string name="please_select_one_of_the_following_buttons_below">Please select one of the following</string>
     <string name="troubleshooting_app">Troubleshooting App</string>
     <string name="press_here_to_record_your_question">Press here to record your question!</string>
+    <string name="please_select_one_of_the_following_inputs_to_record_your_question">Please select one of the following inputs to record your question</string>
 </resources>
