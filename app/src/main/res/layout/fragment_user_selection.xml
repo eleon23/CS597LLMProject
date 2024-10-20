@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".UserSelectionFragment">
 
@@ -14,8 +14,6 @@
         style="@style/MaterialAlertDialog.Material3.Title.Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:singleLine="false"
         android:text="@string/please_select_one_of_the_following_buttons_below"
         android:textAlignment="center" />
 
