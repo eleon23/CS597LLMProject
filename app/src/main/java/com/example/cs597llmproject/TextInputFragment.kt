@@ -16,7 +16,7 @@ class TextInputFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
+    private var userInput = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +29,9 @@ class TextInputFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.submitButton.setOnClickListener {
+            userInput = binding.textInputEditText.text.toString()
+        }
     }
 
     override fun onDestroyView() {

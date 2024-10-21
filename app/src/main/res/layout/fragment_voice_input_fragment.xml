@@ -16,7 +16,7 @@
         android:src="@drawable/ic_launcher_background" />
 
     <Button
-        android:id="@+id/button_second"
+        android:id="@+id/voice_input_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/press_here_to_record_your_question"
