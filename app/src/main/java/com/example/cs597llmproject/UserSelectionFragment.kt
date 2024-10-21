@@ -33,10 +33,10 @@ class UserSelectionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.voiceButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_voice_input_fragment)
+            findNavController().navigate(R.id.action_homeFragment_to_voiceInputFragment)
         }
         binding.textButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_text_input_fragment)
+            findNavController().navigate(R.id.action_homeFragment_to_textInputFragment)
         }
     }
 

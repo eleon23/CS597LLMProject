@@ -12,22 +12,43 @@
         tools:layout="@layout/fragment_user_selection">
 
         <action
-            android:id="@+id/action_homeFragment_to_voice_input_fragment"
+            android:id="@+id/action_homeFragment_to_voiceInputFragment"
             app:destination="@id/voiceInputFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_text_input_fragment"
+            android:id="@+id/action_homeFragment_to_textInputFragment"
             app:destination="@id/textInputFragment" />
     </fragment>
     <fragment
         android:id="@+id/voiceInputFragment"
         android:name="com.example.cs597llmproject.VoiceInputFragment"
         android:label="Voice Input Fragment"
-        tools:layout="@layout/fragment_voice_input_fragment"/>
+        tools:layout="@layout/fragment_voice_input_fragment">
+        <action
+            android:id="@+id/action_voiceInputFragment_to_sendInfoFragment"
+            app:destination="@id/sendInfoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/textInputFragment"
         android:name="com.example.cs597llmproject.TextInputFragment"
         android:label="Text Input Fragment"
-        tools:layout="@layout/fragment_text_input"/>
+        tools:layout="@layout/fragment_text_input">
+        <action
+            android:id="@+id/action_textInputFragment_to_sendInfoFragment"
+            app:destination="@id/sendInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/sendInfoFragment"
+        android:name="com.example.cs597llmproject.SendInfoFragment"
+        android:label="Send Info Fragment"
+        tools:layout="@layout/fragment_send_info">
+
+        <argument
+            android:name="input"
+            android:defaultValue="ERROR"
+            app:argType="string"/>
+
+    </fragment>
 
 </navigation>

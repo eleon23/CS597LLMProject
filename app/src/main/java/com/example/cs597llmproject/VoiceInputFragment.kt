@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.cs597llmproject.databinding.FragmentVoiceInputFragmentBinding
 
 /**
@@ -38,8 +39,11 @@ class VoiceInputFragment : Fragment() {
                     val results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     userInput = results?.get(0) ?: "None"
                     // Handle the extracted text here, for example update the UI
-                    //findViewById<TextView>(R.id.textView).text = textForVoiceInput
                     Toast.makeText(context, userInput, Toast.LENGTH_LONG).show()
+                    val bundle = Bundle().apply {
+                        putString("input", userInput)
+                    }
+                    findNavController().navigate(R.id.action_textInputFragment_to_sendInfoFragment, bundle)
                 }
             }
         return binding.root

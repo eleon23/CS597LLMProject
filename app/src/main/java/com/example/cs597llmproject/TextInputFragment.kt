@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.cs597llmproject.databinding.FragmentTextInputBinding
 import com.example.cs597llmproject.databinding.FragmentVoiceInputFragmentBinding
 
@@ -31,6 +32,10 @@ class TextInputFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.submitButton.setOnClickListener {
             userInput = binding.textInputEditText.text.toString()
+            val bundle = Bundle().apply {
+                putString("input", userInput)
+            }
+            findNavController().navigate(R.id.action_textInputFragment_to_sendInfoFragment, bundle)
         }
     }
 
