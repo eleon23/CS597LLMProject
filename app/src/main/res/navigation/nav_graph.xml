@@ -14,12 +14,20 @@
         <action
             android:id="@+id/action_homeFragment_to_voice_input_fragment"
             app:destination="@id/voiceInputFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_text_input_fragment"
+            app:destination="@id/textInputFragment" />
     </fragment>
     <fragment
         android:id="@+id/voiceInputFragment"
         android:name="com.example.cs597llmproject.VoiceInputFragment"
         android:label="Voice Input Fragment"
-        tools:layout="@layout/fragment_voice_input_fragment">
+        tools:layout="@layout/fragment_voice_input_fragment"/>
 
-    </fragment>
+    <fragment
+        android:id="@+id/textInputFragment"
+        android:name="com.example.cs597llmproject.TextInputFragment"
+        android:label="Text Input Fragment"
+        tools:layout="@layout/fragment_text_input"/>
+
 </navigation>

@@ -35,6 +35,9 @@ class UserSelectionFragment : Fragment() {
         binding.voiceButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_voice_input_fragment)
         }
+        binding.textButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_text_input_fragment)
+        }
     }
 
     override fun onDestroyView() {
