@@ -39,7 +39,7 @@ class VoiceInputFragment : Fragment() {
                     val results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     userInput = results?.get(0) ?: "None"
                     // Handle the extracted text here, for example update the UI
-                    Toast.makeText(context, userInput, Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, userInput, Toast.LENGTH_LONG).show()
                     val bundle = Bundle().apply {
                         putString("input", userInput)
                     }

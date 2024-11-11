@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.telephony.SmsManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,6 @@ import com.example.cs597llmproject.databinding.FragmentTextInputBinding
 class SendInfoFragment : Fragment() {
 
     private var _binding: FragmentSendInfoBinding? = null
-    private val REQUEST_SELECT_CONTACT = 1
     private var userInput = ""
 
     // This property is only valid between onCreateView and
@@ -44,43 +44,13 @@ class SendInfoFragment : Fragment() {
         }
 
         binding.sendButton.setOnClickListener {
-            val pickContactIntent = Intent(Intent.ACTION_PICK).apply {
-                type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+            val sendIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, userInput)
+                type = "text/plain"
             }
-            startActivityForResult(pickContactIntent, REQUEST_SELECT_CONTACT)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_SELECT_CONTACT && resultCode == RESULT_OK) {
-            data?.data?.let { contactUri ->
-                // Query the selected contact for the phone number
-                val projection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
-                context?.contentResolver?.query(contactUri, projection, null, null, null)
-                    ?.use { cursor ->
-                        if (cursor.moveToFirst()) {
-                            val numberIndex =
-                                cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
-                            val phoneNumber = cursor.getString(numberIndex)
-                            // Now launch the SMS intent
-                            sendSms(phoneNumber, userInput)
-                        }
-                    }
-            }
-        }
-    }
-
-    private fun sendSms(phoneNumber: String, userInput: String) {
-        val message = userInput
-        val smsIntent = Intent(Intent.ACTION_SENDTO).apply {
-            data = Uri.parse("smsto:$phoneNumber")
-            putExtra("sms_body", message)
-        }
-        if (requireContext().packageManager.resolveActivity(smsIntent, 0) != null) {
-            startActivity(smsIntent)
-        } else {
-            Toast.makeText(requireContext(), "No messaging app found!", Toast.LENGTH_SHORT).show()
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
     }
 
