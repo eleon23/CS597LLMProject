@@ -43,7 +43,7 @@ class VoiceInputFragment : Fragment() {
                     val bundle = Bundle().apply {
                         putString("input", userInput)
                     }
-                    findNavController().navigate(R.id.action_textInputFragment_to_sendInfoFragment, bundle)
+                    findNavController().navigate(R.id.action_voiceInputFragment_to_sendInfoFragment, bundle)
                 }
             }
         return binding.root
