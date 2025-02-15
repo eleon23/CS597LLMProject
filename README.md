@@ -5,7 +5,9 @@ Here users can type their question, can use speech to text and can submit screen
 
 
 ** Developer Notes **
+
 This is built using Google Gemini but can be update to use whatever AI API tooling such as Open AI. 
 
 In TextInputFragment and VoiceInputFragment:
+
 Please update the method: "convertInputUsingLLM" to use any LLM you need.
