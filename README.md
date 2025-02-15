@@ -1,8 +1,11 @@
+This Android Mobile Application levareages Google Gemnini to provide a Troubleshooting app for user's who need help with rephrasing their questions to improve clarity and efficiency.
+Users are then able to share their newly updated question with family, friends or send it to Google for querying.
+
+Here users can type their question, can use speech to text and can submit screenshots(TBD).
 
 
-https://github.com/user-attachments/assets/b005b0f8-c5d7-43cc-974f-db5c59e9d0ec
+** Developer Notes **
+This is built using Google Gemini but can be update to use whatever AI API tooling such as Open AI. 
 
-
-
-https://github.com/user-attachments/assets/a0f629a8-b3f7-40c0-92db-4582df357ab8
-
+In TextInputFragment and VoiceInputFragment:
+Please update the method: "convertInputUsingLLM" to use any LLM you need.
