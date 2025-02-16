@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_homeFragment_to_textInputFragment"
             app:destination="@id/textInputFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_screenshotInputFragment"
+            app:destination="@id/screenshotInputFragment" />
     </fragment>
     <fragment
         android:id="@+id/voiceInputFragment"
@@ -25,6 +28,16 @@
         tools:layout="@layout/fragment_voice_input_fragment">
         <action
             android:id="@+id/action_voiceInputFragment_to_sendInfoFragment"
+            app:destination="@id/sendInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/screenshotInputFragment"
+        android:name="com.example.cs597llmproject.ScreenshotInputFragment"
+        android:label="Screenshot Input Fragment"
+        tools:layout="@layout/fragment_screenshot_input">
+        <action
+            android:id="@+id/action_screenshotInputFragment_to_sendInfoFragment"
             app:destination="@id/sendInfoFragment" />
     </fragment>
 

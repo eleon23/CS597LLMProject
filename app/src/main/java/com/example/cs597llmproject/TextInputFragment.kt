@@ -23,6 +23,7 @@ class TextInputFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private var userInput = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,10 +51,6 @@ class TextInputFragment : Fragment() {
         }
     }
 
-    /*
-    TODO
-        - Screenshot behavior
-     */
     private suspend fun convertInputUsingLLM(userInput: String): String {
         var result: String? = null
         val model = GenerativeModel(
@@ -76,10 +73,8 @@ class TextInputFragment : Fragment() {
         coroutineScope {
             launch {
                 result = model.generateContent(
-                    "Rephrase the question in a way that is clear enough for the user to copy and past " +
-                            "into Google Search Bar and be able to find the answer. If you think there are multiple questions with different solutions being asked, separately " +
-                            "rephrase them. If you are less than 90% confident in your understanding of the user's intent and problem just provide only the rephrase questions " +
-                            "without additional text. Please provide on response and here is the user's question: $userInput"
+                    "Rephrase the question in a way that is clear enough for the user to copy and paste " +
+                            "into Google Search Bar and be able to find the answer. Please provide one response and here is the user's question: $userInput"
                 ).text
             }
         }

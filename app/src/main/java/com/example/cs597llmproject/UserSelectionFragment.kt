@@ -38,6 +38,10 @@ class UserSelectionFragment : Fragment() {
         binding.textButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_textInputFragment)
         }
+
+        binding.screenshotButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_screenshotInputFragment)
+        }
     }
 
     override fun onDestroyView() {
