@@ -1,3 +1,5 @@
+AI Troubleshooting App in Android
+
 This Android Mobile Application levareages Google Gemnini to provide a Troubleshooting app for user's who need help with rephrasing their questions to improve clarity and efficiency.
 Users are then able to share their newly updated question with family, friends or send it to Google for querying.
 
