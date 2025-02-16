@@ -6,6 +6,8 @@ Here users can type their question, can use speech to text and can submit screen
 
 ** Developer Notes **
 
+Please refer to the Build Config when you need to update your API key.
+
 This is built using Google Gemini but can be update to use whatever AI API tooling such as Open AI. 
 
 In TextInputFragment and VoiceInputFragment:
