@@ -42,6 +42,8 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="query_preamble">"</string>
+
     <string name="voice_input">Voice Input</string>
     <string name="text_input">Text Input</string>
     <string name="please_select_one_of_the_following_buttons_below">Please select one of the following</string>

@@ -1,19 +1,13 @@
 package com.example.cs597llmproject
 
-import android.app.Activity.RESULT_OK
 import android.app.SearchManager
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.telephony.SmsManager
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.cs597llmproject.databinding.FragmentSendInfoBinding
-import com.example.cs597llmproject.databinding.FragmentTextInputBinding
 
 class SendInfoFragment : Fragment() {
 
@@ -36,6 +30,7 @@ class SendInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.formattedQuestion.text = userInput
         binding.googleButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_WEB_SEARCH).apply {
                 putExtra(SearchManager.QUERY, userInput)

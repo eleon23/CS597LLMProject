@@ -6,12 +6,19 @@ import android.speech.RecognizerIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.cs597llmproject.databinding.FragmentVoiceInputFragmentBinding
+import com.google.ai.client.generativeai.GenerativeModel
+import com.google.ai.client.generativeai.type.BlockThreshold
+import com.google.ai.client.generativeai.type.HarmCategory
+import com.google.ai.client.generativeai.type.SafetySetting
+import com.google.ai.client.generativeai.type.generationConfig
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 /**
  * Fragment used for gathing voice input from user
@@ -38,12 +45,16 @@ class VoiceInputFragment : Fragment() {
                 activityResult.data?.let { data ->
                     val results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     userInput = results?.get(0) ?: "None"
-                    // Handle the extracted text here, for example update the UI
-                    //Toast.makeText(context, userInput, Toast.LENGTH_LONG).show()
-                    val bundle = Bundle().apply {
-                        putString("input", userInput)
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        val formattedInput = convertInputUsingLLM(userInput)
+                        val bundle = Bundle().apply {
+                            putString("input", formattedInput)
+                        }
+                        findNavController().navigate(
+                            R.id.action_voiceInputFragment_to_sendInfoFragment,
+                            bundle
+                        )
                     }
-                    findNavController().navigate(R.id.action_voiceInputFragment_to_sendInfoFragment, bundle)
                 }
             }
         return binding.root
@@ -72,6 +83,38 @@ class VoiceInputFragment : Fragment() {
         }
         // Launch the intent using the ActivityResultLauncher
         voiceLauncher.launch(voiceIntent)
+    }
+
+    private suspend fun convertInputUsingLLM(userInput: String): String {
+        var result: String? = null
+        val model = GenerativeModel(
+            modelName = "gemini-1.5-flash-001",
+            apiKey = BuildConfig.API_KEY,
+            generationConfig = generationConfig {
+                temperature = 0.15f
+                topK = 32
+                topP = 1f
+                maxOutputTokens = 4096
+            },
+            safetySettings = listOf(
+                SafetySetting(HarmCategory.HARASSMENT, BlockThreshold.MEDIUM_AND_ABOVE),
+                SafetySetting(HarmCategory.HATE_SPEECH, BlockThreshold.MEDIUM_AND_ABOVE),
+                SafetySetting(HarmCategory.SEXUALLY_EXPLICIT, BlockThreshold.MEDIUM_AND_ABOVE),
+                SafetySetting(HarmCategory.DANGEROUS_CONTENT, BlockThreshold.MEDIUM_AND_ABOVE),
+            )
+        )
+
+        coroutineScope {
+            launch {
+                result = model.generateContent(
+                    "Rephrase the question in a way that is clear enough for the user to copy and past " +
+                            "into Google Search Bar and be able to find the answer. If you think there are multiple questions with different solutions being asked, separately " +
+                            "rephrase them. If you are less than 90% confident in your understanding of the user's intent and problem just provide only the rephrase questions " +
+                            "without additional text. Please provide on response and here is the user's question: $userInput"
+                ).text
+            }
+        }
+        return result.orEmpty()
     }
 
     override fun onDestroyView() {

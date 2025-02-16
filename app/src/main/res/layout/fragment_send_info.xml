@@ -9,11 +9,31 @@
     tools:context=".SendInfoFragment">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:gravity="center"
         android:text="Success! Now you can share you question with someone or Google it!"
         android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Your formatted question is here:"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/formatted_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:layout_marginBottom="20dp"
+        android:text="QUESTION PLACEHOLDER"
+        android:textStyle="italic" />
 
     <LinearLayout
         android:layout_width="match_parent"

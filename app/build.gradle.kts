@@ -1,6 +1,16 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+}
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if(localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use {
+        localProperties.load(it)
+    }
 }
 
 android {
@@ -18,6 +28,15 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField(
+            type = "String",
+            name = "API_KEY",
+            value = localProperties["API_KEY"].toString()
+        )
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -48,7 +67,10 @@ android {
 }
 
 dependencies {
-
+    implementation(platform("com.aallam.openai:openai-client-bom:3.8.2"))
+    implementation("com.aallam.openai:openai-client")
+    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+    runtimeOnly("io.ktor:ktor-client-okhttp")
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.0")
@@ -57,7 +79,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("com.google.mediapipe:tasks-genai:0.10.16")
+    implementation("com.google.mediapipe:tasks-genai:0.10.14")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
