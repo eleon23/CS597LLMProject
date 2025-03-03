@@ -23,6 +23,22 @@
         android:layout_marginBottom="16dp"
         android:text="Upload screenshot" />
 
+    <TextView
+        android:id="@+id/text_input_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Please type your input below:"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/text_input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Your question goes here"
+        android:inputType="textMultiLine" />
+
     <Button
         android:id="@+id/submit_button"
         android:enabled="false"

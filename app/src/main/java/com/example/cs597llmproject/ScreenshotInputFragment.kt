@@ -2,7 +2,6 @@ package com.example.cs597llmproject
 
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -13,8 +12,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -86,7 +83,8 @@ class ScreenshotInputFragment : Fragment() {
 
         binding.submitButton.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch {
-                val formattedInput = convertInputUsingLLM(selectedImageBitmap)
+                val userInput = binding.textInputEditText.text.toString()
+                val formattedInput = convertInputUsingLLM(selectedImageBitmap, userInput)
                 val bundle = Bundle().apply {
                     putString("input", formattedInput)
                 }
@@ -98,7 +96,7 @@ class ScreenshotInputFragment : Fragment() {
         }
     }
 
-    private suspend fun convertInputUsingLLM(bitmap: Bitmap?): String {
+    private suspend fun convertInputUsingLLM(bitmap: Bitmap?, userInput: String): String {
         var result: String? = null
         val model = GenerativeModel(
             modelName = "gemini-1.5-flash-001",
@@ -124,8 +122,8 @@ class ScreenshotInputFragment : Fragment() {
                         if (bitmap != null) {
                             image(bitmap)
                         }
-                        text("The user has a question with this screenshot. Find the top question they could have with this screenshot in a way that is clear enough for the user to copy and paste " +
-                                "into Google Search Bar and be able to find the answer. Please provide one response and attached is the user's screenshot.")
+                        text("Based on my screenshot, please help me rephrase the following question" +
+                        "and return only one rephrased option: $userInput")
                     }
                 ).text
             }
